@@ -5648,6 +5648,7 @@ nv.models.lineChart = function() {
             if (indexToHighlight !== null)
               allData[indexToHighlight].highlight = true;
           }
+
           var tooltipXAxisFormat = tooltipXAxisFormatter || xAxis.tickFormat()
           var xValue = tooltipXAxisFormat(chart.x()(singlePoint,pointIndex));
           interactiveLayer.tooltip
@@ -5806,9 +5807,9 @@ nv.models.lineChart = function() {
   };
 
   chart.tooltipXAxisFormatter = function (_) {
-      if (!arguments.length) return tooltipXAxisFormatter;
-      tooltipXAxisFormatter = _;
-      return chart;
+    if (!arguments.length) return tooltipXAxisFormatter;
+    tooltipXAxisFormatter = _;
+    return chart;
   };
 
   chart.tooltipContent = function(_) {
@@ -10722,6 +10723,7 @@ nv.models.pieChart = function() {
       // Display No Data message if there's nothing to show.
 
       if (!data || !data.length) {
+        container.selectAll('g.nv-wrap.nv-pieChart').remove();
         var noDataText = container.selectAll('.nv-noData').data([noData]);
 
         noDataText.enter().append('text')
