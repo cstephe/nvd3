@@ -103,6 +103,7 @@ nv.models.multiBarHorizontalChart = function() {
       // Display No Data message if there's nothing to show.
 
       if (!data || !data.length || !data.filter(function(d) { return d.values.length }).length) {
+        container.selectAll('g.nv-wrap.nv-multiBarHorizontalChart').remove();
         var noDataText = container.selectAll('.nv-noData').data([noData]);
 
         noDataText.enter().append('text')
@@ -111,8 +112,8 @@ nv.models.multiBarHorizontalChart = function() {
           .style('text-anchor', 'middle');
 
         noDataText
-          .attr('x', margin.left + availableWidth / 2)
-          .attr('y', margin.top + availableHeight / 2)
+            .attr('x', margin.left/2 + availableWidth / 2)
+            .attr('y', margin.top + availableHeight / 2)
           .text(function(d) { return d });
 
         return chart;
